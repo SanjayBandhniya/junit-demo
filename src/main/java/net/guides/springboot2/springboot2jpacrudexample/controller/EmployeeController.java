@@ -19,30 +19,37 @@ import org.springframework.web.bind.annotation.RestController;
 import net.guides.springboot2.springboot2jpacrudexample.exception.ResourceNotFoundException;
 import net.guides.springboot2.springboot2jpacrudexample.model.Employee;
 import net.guides.springboot2.springboot2jpacrudexample.service.EmployeeService;
+import net.guides.springboot2.springboot2jpacrudexample.service.ProductService;
 
 @RestController
 @RequestMapping("/api/v1")
 public class EmployeeController {
-	
+
 	@Autowired
 	private EmployeeService employeeService;
+	
+	@Autowired
+	ProductService productService;
 
 	@GetMapping("/employees")
 	public List<Employee> getAllEmployees() {
-		return employeeService.findAll();
+		List<Employee> all = employeeService.findAll();
+		return all;
 	}
 
 	@GetMapping("/employees/{id}")
 	public ResponseEntity<Employee> getEmployeeById(@PathVariable(value = "id") Long employeeId)
 			throws ResourceNotFoundException {
 		Employee employee = employeeService.findById(employeeId);
+		System.out.println(employee.toString());
 		return ResponseEntity.ok().body(employee);
 	}
 
 	@PostMapping("/employees")
 	public Employee createEmployee(@Valid @RequestBody Employee employee) {
-		System.err.println("1        :" +  employee.toString());
+		System.err.println("1        :" + employee.toString());
 		Employee e = employeeService.save(employee);
+		
 		return e;
 	}
 

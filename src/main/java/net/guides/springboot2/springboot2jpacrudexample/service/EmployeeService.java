@@ -16,7 +16,7 @@ public interface EmployeeService {
 
 	Employee findById(Long employeeId) throws ResourceNotFoundException;
 
-	Employee update(@Valid Employee employeeDetails, Long employeeId) throws ResourceNotFoundException;
+	Employee update( Employee employeeDetails, Long employeeId) throws ResourceNotFoundException;
 
 	Map<String, Boolean> delete(Long employeeId) throws ResourceNotFoundException;
 

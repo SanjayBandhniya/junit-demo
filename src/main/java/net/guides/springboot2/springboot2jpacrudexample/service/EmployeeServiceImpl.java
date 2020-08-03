@@ -21,12 +21,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public List<Employee> findAll() {
+		System.out.println("findall");
 		return employeeRepository.findAll();
 	}
 
 	@Override
 	public Employee save(Employee employee) {
-		System.err.println("2         :"+employee.toString());
+		System.err.println("2        :" + employee.toString());
 		return employeeRepository.save(employee);
 	}
 
